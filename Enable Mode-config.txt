@@ -1,0 +1,7 @@
+
+enable
+conf t
+service password-encryption
+enable secret cisco
+exit
+

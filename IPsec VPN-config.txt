@@ -1,0 +1,54 @@
+
+
+--COMMANDS--
+--router A--
+enable
+conf t
+crypto isakmp policy 1
+authentication pre-share
+encryption aes 256
+hash sha
+group 1
+lifetime 3600
+exit
+crypto isakmp key cisco address 128.193.4.2
+crypto ipsec transform-set MYSET esp-aes esp-sha-hmac
+access-list 100 permit ip 192.168.1.0 0.0.0.255 192.168.2.0 0.0.0.255
+crypto map MYMAP 1 ipsec-isakmp
+set transform-set MYSET
+set peer 128.193.4.2
+match address 100
+exit
+int gi0/0/0
+crypto map MYMAP
+end
+
+--router B--
+enable
+conf t
+crypto isakmp policy 1
+authentication pre-share
+encryption aes 256
+hash sha
+group 1
+lifetime 3600
+exit
+crypto isakmp key cisco address 198.236.250.2
+crypto ipsec transform-set MYSET esp-aes esp-sha-hmac
+access-list 100 permit ip 192.168.2.0 0.0.0.255 192.168.1.0 0.0.0.255
+crypto map MYMAP 1 ipsec-isakmp
+set transform-set MYSET
+set peer 198.236.250.2
+match address 100
+exit
+int gi0/0/0
+crypto map MYMAP
+end
+
+--VERIFY--
+show crypto map
+
+show crypto ipsec sa
+ping <ip-address>
+show crypto ipsec sa
+(check for packet encapsulation)

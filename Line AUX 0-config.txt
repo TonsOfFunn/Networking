@@ -1,0 +1,8 @@
+
+enable
+conf t
+line aux 0
+password cisco
+login
+exit
+

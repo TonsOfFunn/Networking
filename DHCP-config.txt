@@ -1,0 +1,34 @@
+
+enable
+conf t
+
+ip dhcp excluded-address 172.16.1.1 172.16.1.50
+
+service dhcp
+
+ip dhcp pool subnet-left
+network 172.16.1.0 255.255.255.0
+dns-server 172.16.1.12
+default-router 172.16.1.1
+lease 0 23 59
+domain-name example.com
+next-server 172.16.2.5
+
+ip dhcp pool subnet-right
+network 172.16.2.0 /24
+dns-server 172.16.1.12
+default-router 172.16.2.1
+lease 1 2 3
+next-server 172.16.2.5
+
+-----Create DHCP helper address------
+conf t
+int fa0/0
+ip helper-address 172.16.2.5
+
+-------Verify DHCP settings----------
+show ip dhcp binding
+show ip dhcp pool [poolname]
+show ip dhcp server statistics
+show ip dhcp confict
+

@@ -1,0 +1,39 @@
+--SYNTAX--
+interface tunnel <number>
+[tunnel mode gre ip]
+ip address <address mask>
+tunnel source <ip-address> OR tunnel source <interface-id>
+tunnel destination <ip-address | hostname>
+router ospf <process-number>
+network <ip-address> <wildcar-mask> area <number>
+
+
+--COMMANDS--
+enable
+conf t
+interface tunnel 1
+ip address 192.168.3.1 255.255.255.252
+tunnel source gigabitethernet 0/0/0
+tunnel destination 128.193.4.2
+exit
+router ospf 1
+network 192.168.1.0 0.0.255.255 area 0
+end
+
+
+enable
+conf t
+interface tunnel 1
+ip address 192.168.3.2 255.255.255.252
+tunnel source gigabitethernet 0/0/0
+tunnel destination 198.236.250.2
+exit
+router ospf 1
+network 192.168.1.0 0.0.255.255 area 0
+end
+
+
+--VERIFY--
+show run
+show ip int br
+show int tunnel1

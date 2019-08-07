@@ -1,0 +1,7 @@
+
+enable
+conf t
+ip access-list extended 103
+do show ip access-list
+no 20
+

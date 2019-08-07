@@ -1,0 +1,17 @@
+enable
+
+conf t
+spanning-tree vlan 1 root secondary
+exit
+
+OR
+
+conf t
+spanning-tree vlan 1 priority <num>
+exit
+
+show spanning-tree
+
+NOTES:
+*priority increments of 4096
+*lowest number sets root bridge

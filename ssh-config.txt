@@ -1,0 +1,22 @@
+
+enable
+conf t
+
+hostname sw01
+ip domain-name mis351.net
+crypto key generate rsa
+ip ssh version 2
+
+line con 0
+login
+exit
+
+line aux 0
+login
+exit
+
+line vty 0 15
+transport input ssh
+login local
+exit
+

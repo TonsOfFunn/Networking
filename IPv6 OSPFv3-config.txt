@@ -1,0 +1,15 @@
+ipv6 router ospf <process-id>
+router-id <id-value>
+int <interface-value>
+ipv6 ospf <process-id> area <area-number>
+
+
+
+
+enable
+conf t
+ipv6 router ospf 1
+router-id 1.1.1.1
+
+int gi0/0
+ipv6 ospf 1 area 0

@@ -1,0 +1,41 @@
+	CONFIG SYNTAX
+router ospf <process-id>
+[router-id <id-value>]
+[interface loopback <number> ip address <address mask>]
+network <ip-address wildcard-mask> area <area-id>
+[passive-interface <type number>]
+
+
+
+enable
+conf t
+router ospf 1
+network 172.16.0.0 0.0.0.255 area 0
+end
+
+enable
+conf t
+router ospf 10
+network 172.16.10.0 0.0.0.255 area 10
+end
+
+enable
+conf t
+router ospf 20
+network 172.16.20.0 0.0.0.255 area 20
+end
+
+
+	VERIFY
+show ip ospf neighbor
+show ip ospf database
+show ip protocols
+
+	CLEAR OSPF PROCESS
+clear ip ospf process
+
+	REMOVE OSPF NETWORK
+no network <network-id> area <area-id>
+
+router ospf 10
+network 172.16.0.0 0.0.0.255 area 0

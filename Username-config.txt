@@ -1,0 +1,6 @@
+
+enable
+conf t
+username cisco secret cisco
+exit
+

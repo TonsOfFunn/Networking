@@ -1,0 +1,18 @@
+1)  Config NAT Overload (PAT) on Router A
+conf t
+access-list 1 permit 192.168.1.0 0.0.0.255
+ip nat inside source list 1 interface gi0/0/0 overload
+interface gi0/0/1
+ip nat inside
+interface gi0/0/0
+ip nat outside
+
+2)  Config NAT Overload (PAT) on Router B
+conf t
+access-list 1 permit 192.168.2.0 0.0.0.255
+ip nat inside source list 1 interface gi0/0/0 overload
+interface gi0/0/1
+ip nat inside
+interface gi0/0/0
+ip nat outside
+

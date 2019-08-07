@@ -1,0 +1,12 @@
+
+#loopback interfaces are inside routers
+#layer 2 switches use Vlans for loopback interfaces
+
+enable
+conf t
+int loopback 0
+description Management
+ip address 10.1.254.248 255.255.255.252
+no shutdown
+exit
+

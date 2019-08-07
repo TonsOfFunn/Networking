@@ -1,0 +1,30 @@
+
+enable
+conf t
+line console 0
+password cisco
+login
+exit
+
+NOTES:
+	enables 'User Access Verification' to
+	login to switch from console port
+
+	login requires a password on the line--
+
+	# line vty 0 15
+	# password blahblah
+	# login
+	# transport input telnet ssh
+
+	In the above example, you could telnet to the router and login with blahblah. 
+	You could not ssh to the router because ssh requires a username and password
+	(which cannot be specified this way). If you eliminate the "password blahblah", 
+	you will get an error that says password required but none set.
+	---
+	login local uses the local user database which is specified like--
+	# username user password blahblah
+	This will work with ssh or telnet.
+
+	YouTube:	The Difference Between Login and Login Local in Cisco IOS
+	URL:		https://www.youtube.com/watch?v=gVaynZUu1_Y

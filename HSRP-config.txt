@@ -1,0 +1,23 @@
+	Configure HSRP on Router 1
+
+enable
+conf t
+interface fa0/0
+ip address 192.168.1.2 255.255.255.0
+no shutdown
+standby 1 ip 192.168.1.1
+
+	Configure HSRP on Router 2
+
+enable
+conf t
+interface fa0/1
+ip address 192.168.1.3 255.255.255.0
+no shutdown
+standby 1 ip 192.168.1.1
+
+	Statically Assign IP Address to PC
+	
+ip address: 192.168.1.10 
+subnet mask: 255.255.255.0
+default gateway: 192.168.1.1

@@ -1,0 +1,11 @@
+enable 
+
+conf t
+int range fa0/1-2
+shutdown
+spanning-tree portfast
+spanning-tree bpduguard enable
+no shutdown
+exit
+
+show running-config 

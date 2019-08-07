@@ -1,0 +1,15 @@
+enable
+
+[ Core A Switch ]
+conf t
+int range g0/1 - 2
+channel-group 1 mode active
+exit
+
+[ Core B Switch ]
+conf t
+int range g0/1 - 2
+channel-group 1 mode passive
+exit
+
+show running-config

@@ -1,0 +1,22 @@
+
+Syntax:
+ ACCESS-LIST access-list-number {DENY | PERMIT} source [source-wildcard]
+
+conf t
+access-list 1 permit 10.1.1.1
+access-list 1 deny 10.1.1.0 0.0.0.255
+access-list 1 permit 10.0.0.0 0.255.255.255
+int s0/0/1
+ip access-group 1 in
+exit
+
+*End of ACL (default DENY ALL)
+access-list access-list-number DENY ALL
+*Override ACL default setting
+access-list access-list-number PERMIT ANY
+
+show running-config
+show ip access-lists
+show access-lists
+show ip int s0/0/1
+

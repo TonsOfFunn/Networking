@@ -1,0 +1,38 @@
+
+--SYNTAX--
+Numbered Syntax:
+ ACCESS-LIST access-list-number {DENY | PERMIT} protocol
+ source source-wildcard destination destination-wildcard
+ [LOG | LOG-INPUT]
+
+TCP/UDP Syntax:
+ ACCESS-LIST access-list-number {DENY | PERMIT} {TCP | UDP}
+ source source-wildcard [operator [port]] destination 
+ destination-wildcard [operator [port]] [ESTABLISHED | LOG]
+
+
+--COMMANDS--
+conf t
+access-list 103 deny ip 10.0.0.0 0.255.255.255 192.168.100.0 0.0.0.63
+access-list 103 deny ip 172.16.0.0 0.0.255.255 192.168.100.0 0.0.0.63
+access-list 103 permit ip any any
+int g0/0
+ip access-group 103 out
+int g0/1.10
+ip access-group 103 in
+
+
+
+--VERIFY--
+show running-config
+show ip access-lists
+show access-lists
+show ip int g0/1.10
+
+
+--NOTES--
+*End of ACL (default DENY ALL)
+access-list access-list-number DENY ALL
+*Override ACL default setting
+access-list access-list-number PERMIT ANY
+

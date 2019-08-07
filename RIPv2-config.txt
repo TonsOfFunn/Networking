@@ -1,0 +1,26 @@
+
+enable
+conf t
+router rip
+version 2
+no auto-summary
+network 172.16.0.20
+network 172.16.0.32
+network 172.16.22.40
+network 172.30.30.96
+exit
+
+enable
+conf t
+router rip
+version 2
+no auto-summary
+network 10.1.1.128
+network 10.1.1.0
+network 10.1.0.0
+exit
+
+show ip route rip
+show ip protocols
+show ip rip database
+

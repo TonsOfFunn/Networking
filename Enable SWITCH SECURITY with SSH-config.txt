@@ -1,0 +1,51 @@
+
+enable
+conf t
+line console 0
+password cisco
+login
+logging synchronous
+exit
+
+banner motd '*** UNAUTHORIZED ACCESS PROHIBITED ***'
+exit
+
+conf t
+service password-encryption
+enable secret cisco
+exit
+
+conf t
+line vty 0 4
+login local
+transport input ssh
+logging synchronous
+exit
+
+username cisco secret cisco
+
+hostname Switch_Access_2
+ip domain-name mis451-8.net
+crypto key generate rsa
+1024
+ip ssh version 2
+
+
+
+conf t
+int vlan 1
+no ip add
+shut
+exit
+vlan 999
+name admin
+exit
+int vlan 999
+ip address 192.168.1.195 255.255.255.0
+no shutdown
+end
+
+conf t
+vlan 10
+vlan 20
+end

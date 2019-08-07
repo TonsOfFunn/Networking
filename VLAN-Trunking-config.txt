@@ -1,0 +1,12 @@
+
+show interfaces gigabit 0/1 switchport
+
+conf t
+interface gigabit 0/1
+switchport mode trunk
+end
+
+show interfaces trunk
+
+show vlan id 10
+

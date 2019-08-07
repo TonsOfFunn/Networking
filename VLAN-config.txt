@@ -1,0 +1,30 @@
+
+conf t
+vlan 10
+name VLAN_10
+exit
+
+interface range fastethernet 0/13 - 14
+switchport mode access
+switchport access vlan 10
+no shutdown
+exit
+
+conf t
+vlan 99
+name Management
+exit
+
+int vlan 99
+ip address 10.1.1.161 255.255.255.252
+no shutdown
+exit
+
+ip default-gateway 10.1.1.162 
+exit
+
+
+show running-config
+show vlan id 10
+show vlan brief
+

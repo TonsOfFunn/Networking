@@ -1,0 +1,6 @@
+
+enable
+conf t
+banner motd '*** UNAUTHORIZED ACCESS PROHIBITED ***'
+exit
+
